@@ -13,6 +13,7 @@ namespace Crossword.Builder
     /// </summary>
     class Restriction
     {
+        #region Propreties
         /// <summary>Collection of the predetermined characters and their index.</summary>
         public readonly RestrictedCharactersDictionary Characters;
 
@@ -21,6 +22,7 @@ namespace Crossword.Builder
 
         /// <summary>The maximum lenght a <see cref="Word"/> can have.</summary>
         public readonly int MaximumLenght;
+        #endregion
 
         /// <summary>
         /// Initialize a new instance of the Restriction class.
@@ -38,10 +40,11 @@ namespace Crossword.Builder
         // Todo: RestrictedCharactersDictionary summary and sub summary
         internal class RestrictedCharactersDictionary
         {
-            private readonly Dictionary<int, char> _restrictedCharacters;
+
+            private readonly Dictionary<int, Char> _restrictedCharacters;
 
             /// <summary>
-            /// Get the <see cref="char"/> associated with the specified index or <c>\0</c> if there is no char associated.
+            /// Get the <see cref="Char"/> associated with the specified index or <c>\0</c> if there is no char associated.
             /// </summary>
             /// <param name="index">the index of the char to get.</param>
             /// <returns>returns '\0' if the index doesn't exist.</returns>
@@ -50,10 +53,10 @@ namespace Crossword.Builder
                 : '\0';
 
             /// <summary>
-            /// Initialize a new instance of the <see cref="Characters"/> class from a dictionary of characters and their indexes>
+            /// Initialize a new instance of the <see cref="RestrictedCharactersDictionary"/> class from a dictionary of characters and their indexes>
             /// </summary>
             /// <param name="restrictedCharacters"></param>
-            public RestrictedCharactersDictionary(Dictionary<int, char> restrictedCharacters)
+            public RestrictedCharactersDictionary(Dictionary<int, Char> restrictedCharacters)
             {
                 _restrictedCharacters = restrictedCharacters;
             }

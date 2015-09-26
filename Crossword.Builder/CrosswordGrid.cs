@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Crossword.Builder
 {
+    //Todo: summary CrosswordGrid and sub summary
     class CrosswordGrid
     {
         #region Properties
         private TwoDimensionArray<Char> _grid;
 
-        public readonly Dictionary<Word.Placement, Word> Words;
-        public readonly List<Point> Blanks;
+        public List<PlacedWord> WordsAndBlanks; 
 
         public readonly char Blank;
         #endregion
@@ -24,12 +24,24 @@ namespace Crossword.Builder
 
             _grid = new TwoDimensionArray<char>(columnCount, rowCount);
 
-            Words = new Dictionary<Word.Placement, Word>();
-            Blanks = new List<Point>();
+            WordsAndBlanks = new List<PlacedWord>();
         }
 
-        private void Insert(Word word, Word.Placement placement) =>
+        private void Add(Word word, Word.Placement placement)
+        {
             _grid.Insert(word.Value.ToCharArray(), placement.Column, placement.Row, placement.IsHorizontal);
+            WordsAndBlanks.Add(new PlacedWord(placement, word));
 
+            Word.Placement blankPlacement = (placement.IsHorizontal)
+                ? new Word.Placement(placement.Column + word.Length, placement.Row)
+                : new Word.Placement(placement.Column, placement.Row + word.Length);
+
+            if (_grid.IsInGrid(blankPlacement.Column, blankPlacement.Row))
+            {
+                _grid.Insert(Blank, blankPlacement.Column, blankPlacement.Row);
+                WordsAndBlanks.Add(new PlacedWord(placement, null));
+            }
+
+        }
     }
 }

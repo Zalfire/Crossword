@@ -65,7 +65,7 @@ namespace Crossword.Builder
             public readonly bool IsHorizontal;
             #endregion
 
-            public Placement(int row, int column, bool isHorizontal)
+            public Placement(int column, int row, bool isHorizontal = true)
             {
                 Id = Guid.NewGuid().ToString();
 
@@ -92,6 +92,19 @@ namespace Crossword.Builder
                 }
             }
             #endregion
+        }
+    }
+
+    //Todo: PlacedWord summary and sub-sumary
+    public class PlacedWord
+    {
+        public readonly Word Word;
+        public readonly Word.Placement Placement;
+
+        public PlacedWord(Word.Placement placement, Word word)
+        {
+            Placement = placement;
+            Word = word;
         }
     }
 }

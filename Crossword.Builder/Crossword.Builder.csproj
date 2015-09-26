@@ -37,7 +37,7 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Grid.cs" />
+    <Compile Include="CrosswordGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Restriction.cs" />
     <Compile Include="TwoDimensionArray.cs" />

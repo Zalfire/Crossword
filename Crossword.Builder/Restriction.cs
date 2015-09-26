@@ -35,7 +35,6 @@ namespace Crossword.Builder
         // Todo: RestrictedCharactersDictionary summary and sub summary
         internal class RestrictedCharactersDictionary
         {
-
             private readonly Dictionary<int, Char> _restrictedCharacters;
 
             /// <summary>

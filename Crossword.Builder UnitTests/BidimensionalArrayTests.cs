@@ -14,7 +14,7 @@ namespace Crossword.Builder.Tests
         [TestMethod()]
         public void TwoDimensionArrayTest()
         {
-            Assert.IsNotNull(new TwoDimensionArray<bool>(1, 1));
+            Assert.IsNotNull(new BidimensionalArray<bool>(1, 1));
         }
 
         [TestMethod()]
@@ -29,7 +29,7 @@ namespace Crossword.Builder.Tests
             const int column = 2;
             const int row = 3;
 
-            TwoDimensionArray<bool> testArray = new TwoDimensionArray<bool>(column, row);
+            BidimensionalArray<bool> testArray = new BidimensionalArray<bool>(column, row);
             Assert.IsTrue(
                 testArray.IsInGrid(0,0)
                 && testArray.IsInGrid(column - 1, row - 1)
@@ -45,7 +45,7 @@ namespace Crossword.Builder.Tests
             const int column = 5;
             const int row = 6;
 
-            TwoDimensionArray<int> testArray = new TwoDimensionArray<int>(column, row);
+            BidimensionalArray<int> testArray = new BidimensionalArray<int>(column, row);
 
             testArray.Insert(new []{ 1, 2, 3, 4, 5}, 0, 0, true);
             testArray.Insert(new []{ 6, 7, 8, 9, 10, 11}, 0, 0, false);
@@ -66,7 +66,7 @@ namespace Crossword.Builder.Tests
             const int column = 2;
             const int row = 3;
 
-            TwoDimensionArray<int> testArray = new TwoDimensionArray<int>(column, row);
+            BidimensionalArray<int> testArray = new BidimensionalArray<int>(column, row);
 
             testArray.Insert(1, 0, 0);
             Assert.IsTrue(testArray[0,0] == 1);
@@ -82,7 +82,7 @@ namespace Crossword.Builder.Tests
             const int row = 6;
             const int empty = 0;
 
-            TwoDimensionArray<int> testArray = new TwoDimensionArray<int>(column, row);
+            BidimensionalArray<int> testArray = new BidimensionalArray<int>(column, row);
 
             testArray.Insert(new[] { 1, 2, 3, 4, 5 }, 0, 0, true);
             testArray.Insert(new[] { 6, 7, 8, 9, 10, 11 }, 0, 0, false);

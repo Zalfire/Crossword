@@ -11,7 +11,7 @@ namespace Crossword.Builder
     class CrosswordGrid
     {
         #region Properties
-        private TwoDimensionArray<Char> _grid;
+        private BidimensionalArray<Char> _grid;
 
         public List<PlacedWord> WordsAndBlanks; 
 
@@ -22,7 +22,7 @@ namespace Crossword.Builder
         {
             Blank = blank;
 
-            _grid = new TwoDimensionArray<char>(columnCount, rowCount);
+            _grid = new BidimensionalArray<char>(columnCount, rowCount);
 
             WordsAndBlanks = new List<PlacedWord>();
         }

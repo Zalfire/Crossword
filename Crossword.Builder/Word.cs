@@ -23,7 +23,7 @@ namespace Crossword.Builder
 
         #region Initialization
         /// <summary>
-        /// Initialize a new instance of the <see cref="Word"/> class.
+        /// Initialize a new instance of the <see cref="Word"/> class from a <see cref="String"/>.
         /// </summary>
         /// <param name="value">The <see cref="Word.Value"/> of the <see cref="Word"/> class.</param>
         public Word(String value)

@@ -1,18 +1,29 @@
 using System;
+using System.Collections.Generic;
 
 namespace Crossword.Builder
 {
-    public class TwoDimensionArray<T>
+    public class BidimensionalArray<T>
     {
         #region Properties
+
         private T[,] _array;
 
+        /// <summary>Gets the 32-bit integer that represents the number of columns in the specified dimensions of the <see cref="BidimensionalArray{T}"/>.</summary>
         public readonly int ColumnCount;
+        /// <summary>Gets the 32-bit integer that represents the number of rows in the specified dimensions of the <see cref="BidimensionalArray{T}"/>.</summary>
         public readonly int RowCount;
+
+        /// <summary>Gets the 32-bit integer that represents the total number of elements in the <see cref="BidimensionalArray{T}"/>.</summary>
+        public int Lenght => _array.Length;
         #endregion
 
         #region Initialization
-        public TwoDimensionArray(T[,] array)
+        /// <summary>
+        /// Initialize a new instance of the <see cref="BidimensionalArray{T}"/> class from an existing two dimensional array.
+        /// </summary>
+        /// <param name="array"></param>
+        public BidimensionalArray(T[,] array)
         {
             _array = array;
 
@@ -20,8 +31,12 @@ namespace Crossword.Builder
             ColumnCount = array.GetLength(0);
             RowCount = array.GetLength(1);
         }
-
-        public TwoDimensionArray(int columnCount, int rowCount)
+        /// <summary>
+        /// Initialize a new instance of the <see cref="BidimensionalArray{T}"/> class from specified dimensions.
+        /// </summary>
+        /// <param name="columnCount">Number of columns of the <see cref="Array"/>.</param>
+        /// <param name="rowCount">Number of rows of the <see cref="Array"/>.</param>
+        public BidimensionalArray(int columnCount, int rowCount)
         {
             if (columnCount < 1 || rowCount < 1)
                 throw new Exception("Cannot create initialize twoDimensionArray with negative or null dimensions"); //TOdo: TwoDimensionArray.new trows execption
@@ -40,11 +55,11 @@ namespace Crossword.Builder
             (columnIndex >= 0 && columnIndex < ColumnCount) //Column
             && (rowIndex >= 0 && rowIndex < RowCount); //Row
 
-        //Todo: test Insert
+        #region Insert
         public void Insert(T[] elements, int columnIndex, int rowIndex, bool isHorizontal = true)
         {
             if (!IsInGrid(columnIndex, rowIndex))
-                throw new IndexOutOfRangeException("Outside of the grid, during the insert"); //Todo: TwoDimensionalArray.Insert throw execption
+                throw new IndexOutOfRangeException("Out of the grid, during the insert"); //Todo: TwoDimensionalArray.Insert throw execption
 
             if (isHorizontal)
             {
@@ -75,9 +90,10 @@ namespace Crossword.Builder
 
             _array[columnIndex, rowIndex] = element;
         }
+        #endregion
 
         public void Clear() => Array.Clear(this._array, 0, this._array.Length);
         
-        public TwoDimensionArray<T> Clone() => new TwoDimensionArray<T>(this._array); 
+        public BidimensionalArray<T> Clone() => new BidimensionalArray<T>(this._array); 
     }
 }

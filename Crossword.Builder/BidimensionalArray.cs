@@ -39,7 +39,7 @@ namespace Crossword.Builder
         public BidimensionalArray(int columnCount, int rowCount)
         {
             if (columnCount < 1 || rowCount < 1)
-                throw new Exception("Cannot create initialize twoDimensionArray with negative or null dimensions"); //TOdo: TwoDimensionArray.new trows execption
+                throw new Exception("Cannot initialize BidimensionalArray with negative or null dimensions"); //TOdo: TwoDimensionArray.new trows execption
 
             _array = new T[columnCount, rowCount];
 
@@ -64,9 +64,8 @@ namespace Crossword.Builder
             if (isHorizontal)
             {
                 //Insert Honrizontally
-
                 if (!IsInGrid(columnIndex + elements.Length - 1, rowIndex))
-                    throw new IndexOutOfRangeException("Outside of the grid, during the insert"); //Todo: TwoDimensionalArray.Insert throw execption
+                    throw new IndexOutOfRangeException("Out of the grid, during the insert"); //Todo: TwoDimensionalArray.Insert throw execption
 
                 for (int i = 0; i < elements.Length; i++)
                     _array[columnIndex + i, rowIndex] = elements[i];
@@ -74,7 +73,6 @@ namespace Crossword.Builder
             else
             {
                 //Insert Vertically
-
                 if (!IsInGrid(columnIndex, rowIndex + elements.Length - 1))
                     throw new IndexOutOfRangeException("Outside of the grid, during the insert"); //Todo: TwoDimensionalArray.Insert throw execption
 
@@ -86,7 +84,7 @@ namespace Crossword.Builder
         public void Insert(T element, int columnIndex, int rowIndex)
         {
             if (!IsInGrid(columnIndex, rowIndex))
-                throw new IndexOutOfRangeException("Outside of the grid, during the Insert"); //Todo: TwoDimensionalArray.Insert throw execption
+                throw new IndexOutOfRangeException("Out of the grid, during the Insert"); //Todo: TwoDimensionalArray.Insert throw execption
 
             _array[columnIndex, rowIndex] = element;
         }

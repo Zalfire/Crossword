@@ -1,21 +1,23 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Crossword.Builder
 {
     /// <summary>
     /// Represent a restriction, the legnth a word should have and which characters are predetermined.
     /// </summary>
-    class Restriction
+    public class Restriction
     {
         #region Propreties
         /// <summary>Collection of the predetermined characters and their index.</summary>
-        public readonly RestrictedCharactersDictionary Characters;
+        public readonly IEnumerable<RestrictedCharacter> RestrictedCharacters;
 
         /// <summary>The minimum lenght a <see cref="Word"/> can have.</summary>
         public readonly int MimimumLenght;
 
-        /// <summary>The maximum lenght a <see cref="Word"/> can have.</summary>
+        /// <summary>The excluded maximum lenght a <see cref="Word"/> can have.</summary>
         public readonly int MaximumLenght;
         #endregion
 
@@ -23,37 +25,42 @@ namespace Crossword.Builder
         /// Initialize a new instance of the Restriction class.
         /// </summary>
         /// <param name="mimimumLenght">The minimum lenght a <see cref="Word"/> can have.</param>
-        /// <param name="maximumLenght">The maximum lenght a <see cref="Word"/> can have.</param>
-        /// <param name="characters">Collection of the predetermined characters and their index.</param>
-        public Restriction(int mimimumLenght, int maximumLenght, RestrictedCharactersDictionary characters = null)
+        /// <param name="maximumLenght">The excluded maximum lenght a <see cref="Word"/> can have.</param>
+        /// <param name="characters">Collection of <see cref="RestrictedCharacter"/.></param>
+        public Restriction(int mimimumLenght, int maximumLenght, IEnumerable<RestrictedCharacter> restrictedCharacters = null)
         {
+            if (maximumLenght < mimimumLenght && maximumLenght != 0)
+                throw new Exception("Maximum cannot be smaller than minimum.");
+            if (maximumLenght < 0)
+                throw new Exception("Maximum cannot be smaller than 0");
+            if (mimimumLenght < 1)
+                throw new Exception("Minimum cannot be smaller than 1");
+            if (restrictedCharacters != null) {
+                if(restrictedCharacters.Select(w => w.Index).Distinct().Count() != restrictedCharacters.Count())
+                    throw new Exception("Index needs to be unique.");
+                if (maximumLenght != 0 && restrictedCharacters.Any(c => c.Index >= maximumLenght))
+                    throw new Exception("Cannot have characters outside of range.");
+            }
+
             MimimumLenght = mimimumLenght;
             MaximumLenght = maximumLenght;
-            Characters = characters;
+            RestrictedCharacters = restrictedCharacters;
         }
+    }
 
-        // Todo: RestrictedCharactersDictionary summary and sub summary
-        internal class RestrictedCharactersDictionary
+    // Todo: RestrictedCharacter summary and sub summary
+    public class RestrictedCharacter
+    {
+        #region Propreties
+        public readonly int Index;
+
+        public readonly Char Value;
+        #endregion
+
+        public RestrictedCharacter(Char value, int index)
         {
-            private readonly Dictionary<int, Char> _restrictedCharacters;
-
-            /// <summary>
-            /// Get the <see cref="Char"/> associated with the specified index or <c>\0</c> if there is no char associated.
-            /// </summary>
-            /// <param name="index">the index of the char to get.</param>
-            /// <returns>returns '\0' if the index doesn't exist.</returns>
-            public char this[int index] => _restrictedCharacters.ContainsKey(index)
-                ? _restrictedCharacters[index]
-                : '\0';
-
-            /// <summary>
-            /// Initialize a new instance of the <see cref="RestrictedCharactersDictionary"/> class from a dictionary of characters and their indexes>
-            /// </summary>
-            /// <param name="restrictedCharacters"></param>
-            public RestrictedCharactersDictionary(Dictionary<int, Char> restrictedCharacters)
-            {
-                _restrictedCharacters = restrictedCharacters;
-            }
+            Index = index;
+            Value = value;
         }
     }
 }

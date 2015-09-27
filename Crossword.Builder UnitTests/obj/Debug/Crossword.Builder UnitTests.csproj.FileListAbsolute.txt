@@ -7,3 +7,11 @@ C:\GitHub\Crossword\Crossword.Builder UnitTests\bin\Debug\Microsoft.VisualStudio
 C:\GitHub\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.csprojResolveAssemblyReference.cache
 C:\GitHub\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.dll
 C:\GitHub\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.pdb
+D:\Github\Crossword\Crossword.Builder UnitTests\bin\Debug\Crossword.Builder UnitTests.dll
+D:\Github\Crossword\Crossword.Builder UnitTests\bin\Debug\Crossword.Builder UnitTests.pdb
+D:\Github\Crossword\Crossword.Builder UnitTests\bin\Debug\Crossword.Builder.dll
+D:\Github\Crossword\Crossword.Builder UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\Github\Crossword\Crossword.Builder UnitTests\bin\Debug\Crossword.Builder.pdb
+D:\Github\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.csprojResolveAssemblyReference.cache
+D:\Github\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.dll
+D:\Github\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.pdb

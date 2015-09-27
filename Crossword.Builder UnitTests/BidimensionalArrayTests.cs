@@ -80,21 +80,20 @@ namespace Crossword.Builder.Tests
         {
             const int column = 5;
             const int row = 6;
-            const int empty = 0;
 
             BidimensionalArray<int> testArray = new BidimensionalArray<int>(column, row);
 
-            testArray.Insert(new[] { 1, 2, 3, 4, 5 }, 0, 0, true);
-            testArray.Insert(new[] { 6, 7, 8, 9, 10, 11 }, 0, 0, false);
-            testArray.Insert(new[] { 12, 13, 14, 15, 16, 17 }, column - 1, 0, false);
-            testArray.Insert(new[] { 18, 19, 20, 21, 22 }, 0, row - 1, true);
+            testArray.Insert(Enumerable.Range(0, 5).ToArray(), 0, 0, true);
+            testArray.Insert(Enumerable.Range(5, 6).ToList(), 0, 0, false);
+            testArray.Insert(Enumerable.Range(12, 6).ToArray(), column - 1, 0, false);
+            testArray.Insert(Enumerable.Range(18, 5).ToArray(), 0, row - 1, true);
 
             testArray.Clear();
 
             Assert.IsTrue(
                 testArray != null
-                && testArray[0,0] == empty
-                && testArray[column - 1, row - 1] == empty);
+                && testArray[0,0] == default(int)
+                && testArray[column - 1, row - 1] == default(int));
         }
 
         [TestMethod()]

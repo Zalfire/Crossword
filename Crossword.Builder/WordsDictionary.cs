@@ -37,11 +37,9 @@ namespace Crossword.Builder
             if (restriction.RestrictedCharacters == null)
                 return words;
 
-            words = words.Where(word => 
+            return words.Where(word => 
                 !restriction.RestrictedCharacters.Any(c => c.Index == word.Length + 1 ||
                 (word.Length > c.Index && word[c.Index] != c.Value)));
-
-            return words;
         }
 
     }

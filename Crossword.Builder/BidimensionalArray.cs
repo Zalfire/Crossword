@@ -7,7 +7,7 @@ namespace Crossword.Builder
     {
         #region Properties
 
-        private T[,] _array;
+        private volatile T[,] _array;
 
         /// <summary>Gets the 32-bit integer that represents the number of columns in the specified dimensions of the <see cref="BidimensionalArray{T}"/>.</summary>
         public readonly int ColumnCount;
@@ -15,7 +15,7 @@ namespace Crossword.Builder
         public readonly int RowCount;
 
         /// <summary>Gets the 32-bit integer that represents the total number of elements in the <see cref="BidimensionalArray{T}"/>.</summary>
-        public int Lenght => _array.Length;
+        public int Count => _array.Length;
         #endregion
 
         #region Initialization
@@ -56,7 +56,7 @@ namespace Crossword.Builder
             && (rowIndex >= 0 && rowIndex < RowCount); //Row
 
         #region Insert
-        public void Insert(T[] elements, int columnIndex, int rowIndex, bool isHorizontal = true)
+        public void Insert(IList<T> elements, int columnIndex, int rowIndex, bool isHorizontal = true)
         {
             if (!IsInGrid(columnIndex, rowIndex))
                 throw new IndexOutOfRangeException("Out of the grid, during the insert"); //Todo: TwoDimensionalArray.Insert throw execption
@@ -64,19 +64,19 @@ namespace Crossword.Builder
             if (isHorizontal)
             {
                 //Insert Honrizontally
-                if (!IsInGrid(columnIndex + elements.Length - 1, rowIndex))
+                if (!IsInGrid(columnIndex + elements.Count - 1, rowIndex))
                     throw new IndexOutOfRangeException("Out of the grid, during the insert"); //Todo: TwoDimensionalArray.Insert throw execption
 
-                for (int i = 0; i < elements.Length; i++)
+                for (int i = 0; i < elements.Count; i++)
                     _array[columnIndex + i, rowIndex] = elements[i];
             }
             else
             {
                 //Insert Vertically
-                if (!IsInGrid(columnIndex, rowIndex + elements.Length - 1))
+                if (!IsInGrid(columnIndex, rowIndex + elements.Count - 1))
                     throw new IndexOutOfRangeException("Outside of the grid, during the insert"); //Todo: TwoDimensionalArray.Insert throw execption
 
-                for (int i = 0; i < elements.Length; i++)
+                for (int i = 0; i < elements.Count; i++)
                     _array[columnIndex, rowIndex + i] = elements[i];
             }
         }

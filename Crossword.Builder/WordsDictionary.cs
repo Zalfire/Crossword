@@ -12,17 +12,20 @@ namespace Crossword.Builder
 
         public readonly IEnumerable<Word> Words;
 
+        /// <summary>
+        /// Initialize a new instance of the <see cref="WordsDictionary"/> class.
+        /// </summary>
         public WordsDictionary()
         {
             Words = ReadDictionaryFile()
-                .ConvertAll(l => new Word(l))
-                .OrderBy(w => w.Length);
+                .ConvertAll(line => new Word(line))
+                .OrderByDescending(w => w.Length);
         }
 
         private List<String> ReadDictionaryFile()
         {
 #if (DEBUG)
-            return new List<String>(File.ReadAllLines(@"D:\Github\Crossword\Crossword.Builder\ressources\Dictionary.txt"));
+            return new List<String>(File.ReadAllLines(@"C:\Github\Crossword\Crossword.Builder\ressources\Dictionary.txt"));
 #endif
 
             return new List<String>(File.ReadAllLines(_pathToDictionary)); //TODO: WordsDictionary test path.
@@ -32,14 +35,13 @@ namespace Crossword.Builder
         {
             IEnumerable<Word> words = Words.Where(word =>
                 word.Length >= restriction.MimimumLenght
-                && (word.Length < restriction.MaximumLenght || restriction.MaximumLenght == 0));
+                && (word.Length <= restriction.MaximumLenght || restriction.MaximumLenght == 0));
 
-            if (restriction.RestrictedCharacters == null)
-                return words;
-
-            return words.Where(word => 
-                !restriction.RestrictedCharacters.Any(c => c.Index == word.Length + 1 ||
-                (word.Length > c.Index && word[c.Index] != c.Value)));
+            return restriction.RestrictedCharacters == null
+                ? words
+                : words.Where(word =>
+                    !restriction.RestrictedCharacters.Any(c => c.Index == word.Length + 1 ||
+                    (word.Length > c.Index && word[c.Index] != c.Value)));
         }
 
     }

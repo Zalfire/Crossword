@@ -49,10 +49,11 @@ namespace Crossword.Builder
         }
         #endregion
 
-        public T this[int column, int row] => _array[column, row];
+        public T this[int column, int row] 
+            => _array[column, row];
 
-        public Boolean IsInGrid(int columnIndex, int rowIndex) =>
-            (columnIndex >= 0 && columnIndex < ColumnCount) //Column
+        public Boolean IsInGrid(int columnIndex, int rowIndex)
+            => (columnIndex >= 0 && columnIndex < ColumnCount) //Column
             && (rowIndex >= 0 && rowIndex < RowCount); //Row
 
         #region Insert
@@ -90,8 +91,16 @@ namespace Crossword.Builder
         }
         #endregion
 
-        public void Clear() => Array.Clear(this._array, 0, this._array.Length);
+        public bool IsDefault(int columnIndex, int rowIndex)
+            => IsDefault(this[columnIndex, rowIndex]);
+
+        public bool IsDefault(T element)
+            => element.Equals(default(T));
+
+        public void Clear() 
+            => Array.Clear(this._array, 0, this._array.Length);
         
-        public BidimensionalArray<T> Clone() => new BidimensionalArray<T>(this._array); 
+        public BidimensionalArray<T> Clone() 
+            => new BidimensionalArray<T>(this._array); 
     }
 }

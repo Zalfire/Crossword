@@ -14,6 +14,8 @@ namespace Crossword.Builder
         /// <summary>The actual value of the class <see cref="Word"/>.</summary>
         public readonly String Value;
 
+        private readonly Char[] _chars;
+
         /// <summary>Gets the number of characters in <see cref="Word.Value"/>.</summary>
         public int Length => Value.Length;
 
@@ -31,8 +33,12 @@ namespace Crossword.Builder
             Id = Guid.NewGuid().ToString();
 
             Value = value.Trim().ToLower(); //Trims and Lower case value
+            _chars = Value.ToCharArray();
         }
         #endregion
+
+        public Char[] ToChars ()
+            => this._chars;
 
         #region Equality members
 
@@ -73,6 +79,7 @@ namespace Crossword.Builder
                 Column = column;
                 IsHorizontal = isHorizontal;
             }
+
             #region Equality members
             protected bool Equals(Placement other)
             {
@@ -96,15 +103,15 @@ namespace Crossword.Builder
     }
 
     //Todo: PlacedWord summary and sub-sumary
-    public class PlacedWord
-    {
-        public readonly Word Word;
-        public readonly Word.Placement Placement;
+    //public class PlacedWord
+    //{
+    //    public readonly Word Word;
+    //    public readonly Word.Placement Placement;
 
-        public PlacedWord(Word.Placement placement, Word word)
-        {
-            Placement = placement;
-            Word = word;
-        }
-    }
+    //    public PlacedWord(Word.Placement placement, Word word)
+    //    {
+    //        Placement = placement;
+    //        Word = word;
+    //    }
+    //}
 }

@@ -9,6 +9,24 @@ using System.Threading.Tasks;
 namespace Crossword.Builder.Tests
 {
     [TestClass()]
+    public class BidimensionalArrayTests
+    {
+        [TestMethod()]
+        public void IsDefautlTest()
+        {
+            const int column = 2;
+            const int row = 3;
+
+            BidimensionalArray<int> testArray = new BidimensionalArray<int>(column, row);
+
+            Assert.IsTrue(testArray.IsDefault(0, 0));
+
+            testArray.Insert(1, 0, 0);
+            Assert.IsFalse(testArray.IsDefault(0, 0));
+        }
+    }
+
+    [TestClass()]
     public class TwoDimensionArrayTests
     {
         [TestMethod()]
@@ -20,7 +38,7 @@ namespace Crossword.Builder.Tests
         [TestMethod()]
         public void TwoDimensionArrayTest1()
         {
-            Assert.IsNotNull(new[] {true});
+            Assert.IsNotNull(new BidimensionalArray<bool>( new[,] { { true } }));
         }
 
         [TestMethod()]

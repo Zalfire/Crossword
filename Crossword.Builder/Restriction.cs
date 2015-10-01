@@ -14,10 +14,10 @@ namespace Crossword.Builder
         /// <summary>Collection of the predetermined characters and their index.</summary>
         public readonly IEnumerable<RestrictedCharacter> RestrictedCharacters;
 
-        /// <summary>The minimum lenght a <see cref="Word"/> can have.</summary>
+        /// <summary>The included  minimum lenght a <see cref="Word"/> can have.</summary>
         public readonly int MimimumLenght;
 
-        /// <summary>The excluded maximum lenght a <see cref="Word"/> can have.</summary>
+        /// <summary>The included maximum lenght a <see cref="Word"/> can have.</summary>
         public readonly int MaximumLenght;
         #endregion
 

@@ -23,7 +23,7 @@ namespace Crossword.Builder.Tests
             var grid = new CrosswordGrid(2, 2, ' ');
             //grid.BuildGrid();
             
-            grid = new CrosswordGrid(5, 3, ' ');
+            grid = new CrosswordGrid(6, 6, ' ');
             grid.BuildGrid();
         }
     }

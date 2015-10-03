@@ -14,7 +14,7 @@ namespace Crossword.Builder
         /// <summary>The actual value of the class <see cref="Word"/>.</summary>
         public readonly String Value;
 
-        private readonly Char[] _chars;
+        private readonly Char[] _characters;
 
         /// <summary>Gets the number of characters in <see cref="Word.Value"/>.</summary>
         public int Length => Value.Length;
@@ -33,28 +33,25 @@ namespace Crossword.Builder
             Id = Guid.NewGuid().ToString();
 
             Value = value.Trim().ToLower(); //Trims and Lower case value
-            _chars = Value.ToCharArray();
+            _characters = Value.ToCharArray();
         }
         #endregion
 
-        public Char[] ToCharArray ()
-            => this._chars;
+        public Char[] ToCharArray()
+            => this._characters;
 
-        #region Equality members
-
-        protected bool Equals(Word other)
+        public class EqualityComparer : IEqualityComparer<Word>
         {
-            return String.Equals(Value, other.Value);
-        }
+            public bool Equals(Word x, Word y)
+            {
+                return x.Value.Equals(y.Value);
+            }
 
-        public override int GetHashCode()
-        {
-            return Value != null 
-                ? Value.GetHashCode() 
-                : 0;
+            public int GetHashCode(Word obj)
+            {
+                return obj.Value.GetHashCode();
+            }
         }
-
-        #endregion
 
         //Todo: Placement summary and sub-summary
         public class Placement
@@ -98,16 +95,4 @@ namespace Crossword.Builder
         }
     }
 
-    //Todo: PlacedWord summary and sub-sumary
-    //public class PlacedWord
-    //{
-    //    public readonly Word Word;
-    //    public readonly Word.Placement Placement;
-
-    //    public PlacedWord(Word.Placement placement, Word word)
-    //    {
-    //        Placement = placement;
-    //        Word = word;
-    //    }
-    //}
 }

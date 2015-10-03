@@ -78,7 +78,7 @@ namespace Crossword.Builder
 
             Word.Placement blankPlacement = (placement.IsHorizontal)
                 ? new Word.Placement(placement.Column + word.Length, placement.Row)
-                : new Word.Placement(placement.Column, placement.Row + word.Length);
+                : new Word.Placement(placement.Column, placement.Row + word.Length, false);
 
             if (_grid.IsInGrid(blankPlacement.Column, blankPlacement.Row))
             {
@@ -93,11 +93,14 @@ namespace Crossword.Builder
             //Todo: removes the blanks even if they should still be there
             Word.Placement blankPlacement = (placement.IsHorizontal)
                 ? new Word.Placement(placement.Column + word.Length, placement.Row)
-                : new Word.Placement(placement.Column, placement.Row + word.Length);
+                : new Word.Placement(placement.Column, placement.Row + word.Length, false);
 
             bool isBlankInGrid = (_grid.IsInGrid(blankPlacement.Column, blankPlacement.Row));
+            bool hasOtherBlank = isBlankInGrid &&
+                WordsAndBlanks.ContainsKey(new Word.Placement(blankPlacement.Column, blankPlacement.Row,
+                    !blankPlacement.IsHorizontal));
 
-            Char[] chars = isBlankInGrid
+            Char[] chars = isBlankInGrid && !hasOtherBlank
                 ? new char[word.Length + 1]
                 : new char[word.Length] ;
 
@@ -137,21 +140,22 @@ namespace Crossword.Builder
             #region variables
             List<RestrictedCharacter> restrictedCharacters = new List<RestrictedCharacter>();
             int count;
-            int index;
+            int startIndex;
             if (placement.IsHorizontal)
             {
-                index = placement.Column;
+                startIndex = placement.Column;
                 count = _grid.ColumnCount;
             }
             else
             {
-                index = placement.Row;
+                startIndex = placement.Row;
                 count = _grid.RowCount;
             }
-            int max = count - index;
+            int max = count - startIndex;
             Char character;
             #endregion
-            while (index < count)
+
+            for (int index = startIndex; index < count; index++)
             {
                 character = placement.IsHorizontal
                     ? _grid[index, placement.Row]
@@ -161,13 +165,11 @@ namespace Crossword.Builder
                 {
                     if (character == Blank)
                     {
-                        max = index;
+                        max = index - startIndex;
                         break;
                     }
                     restrictedCharacters.Add(new RestrictedCharacter(character, index));
                 }
-
-                index++;
             }        
             if (max == 0) // blank on first index
                 return null;

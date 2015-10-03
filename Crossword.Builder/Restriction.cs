@@ -25,7 +25,7 @@ namespace Crossword.Builder
         /// Initialize a new instance of the Restriction class.
         /// </summary>
         /// <param name="mimimumLenght">The minimum lenght a <see cref="Word"/> can have.</param>
-        /// <param name="maximumLenght">The excluded maximum lenght a <see cref="Word"/> can have.</param>
+        /// <param name="maximumLenght">The included maximum lenght a <see cref="Word"/> can have.</param>
         /// <param name="characters">Collection of <see cref="RestrictedCharacter"/.></param>
         public Restriction(int mimimumLenght, int maximumLenght, IEnumerable<RestrictedCharacter> restrictedCharacters = null)
         {

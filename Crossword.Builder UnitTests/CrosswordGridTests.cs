@@ -21,6 +21,9 @@ namespace Crossword.Builder.Tests
         public void BuildGridTest()
         {
             var grid = new CrosswordGrid(2, 2, ' ');
+            //grid.BuildGrid();
+            
+            grid = new CrosswordGrid(5, 3, ' ');
             grid.BuildGrid();
         }
     }

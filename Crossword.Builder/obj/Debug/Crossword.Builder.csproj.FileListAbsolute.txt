@@ -8,3 +8,8 @@ D:\Github\Crossword\Crossword.Builder\bin\Debug\Crossword.Builder.pdb
 D:\Github\Crossword\Crossword.Builder\obj\Debug\Crossword.Builder.csprojResolveAssemblyReference.cache
 D:\Github\Crossword\Crossword.Builder\obj\Debug\Crossword.Builder.dll
 D:\Github\Crossword\Crossword.Builder\obj\Debug\Crossword.Builder.pdb
+C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder\bin\Debug\Crossword.Builder.dll
+C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder\bin\Debug\Crossword.Builder.pdb
+C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder\obj\Debug\Crossword.Builder.csprojResolveAssemblyReference.cache
+C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder\obj\Debug\Crossword.Builder.dll
+C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder\obj\Debug\Crossword.Builder.pdb

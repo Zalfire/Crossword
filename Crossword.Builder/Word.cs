@@ -37,7 +37,7 @@ namespace Crossword.Builder
         }
         #endregion
 
-        public Char[] ToChars ()
+        public Char[] ToCharArray ()
             => this._chars;
 
         #region Equality members
@@ -60,9 +60,6 @@ namespace Crossword.Builder
         public class Placement
         {
             #region Properties
-            /// <summary><see cref="Guid"/> identification as <see cref="String"/>.</summary>
-            public readonly String Id;
-
             public readonly int Row;
             
             public readonly int Column;
@@ -73,32 +70,31 @@ namespace Crossword.Builder
 
             public Placement(int column, int row, bool isHorizontal = true)
             {
-                Id = Guid.NewGuid().ToString();
-
                 Row = row;
                 Column = column;
                 IsHorizontal = isHorizontal;
             }
 
-            #region Equality members
-            protected bool Equals(Placement other)
+            public class EqualityComparer : IEqualityComparer<Placement>
             {
-                return Row == other.Row 
-                    && Column == other.Column
-                    && IsHorizontal == other.IsHorizontal;
-            }
-
-            public override int GetHashCode()
-            {
-                unchecked
+                public bool Equals(Placement x, Placement y)
                 {
-                    var hashCode = Row;
-                    hashCode = (hashCode*397) ^ Column;
-                    hashCode = (hashCode*397) ^ IsHorizontal.GetHashCode();
-                    return hashCode;
+                    return x.Row == y.Row
+                           && x.Column == y.Column
+                           && x.IsHorizontal == y.IsHorizontal;
+                }
+
+                public int GetHashCode(Placement obj)
+                {
+                    unchecked
+                    {
+                        var hashCode = obj.Row;
+                        hashCode = (hashCode*397) ^ obj.Column;
+                        hashCode = (hashCode*397) ^ obj.IsHorizontal.GetHashCode();
+                        return hashCode;
+                    }
                 }
             }
-            #endregion
         }
     }
 

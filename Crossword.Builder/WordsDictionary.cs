@@ -25,10 +25,11 @@ namespace Crossword.Builder
         private List<String> ReadDictionaryFile()
         {
 #if (DEBUG)
+            return new List<String>(File.ReadAllLines(@"C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder\ressources\Dictionary.txt"));
             return new List<String>(File.ReadAllLines(@"C:\Github\Crossword\Crossword.Builder\ressources\Dictionary.txt"));
 #endif
 
-            return new List<String>(File.ReadAllLines(_pathToDictionary)); //TODO: WordsDictionary test path.
+            //return new List<String>(File.ReadAllLines(_pathToDictionary)); //TODO: WordsDictionary test path.
         }
 
         public IEnumerable<Word> GetWords(Restriction restriction)
@@ -39,9 +40,10 @@ namespace Crossword.Builder
 
             return restriction.RestrictedCharacters == null
                 ? words
-                : words.Where(word =>
-                    !restriction.RestrictedCharacters.Any(c => c.Index == word.Length + 1 ||
-                    (word.Length > c.Index && word[c.Index] != c.Value)));
+                : words.Where(word => !restriction.RestrictedCharacters
+                    .Any(restricredCharacter => restricredCharacter.Index == word.Length
+                        || (word.Length > restricredCharacter.Index 
+                            && word[restricredCharacter.Index] != restricredCharacter.Value)));
         }
 
     }

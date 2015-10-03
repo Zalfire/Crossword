@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Crossword.Builder
 {
@@ -49,9 +50,6 @@ namespace Crossword.Builder
         }
         #endregion
 
-        public T this[int column, int row] 
-            => _array[column, row];
-
         public Boolean IsInGrid(int columnIndex, int rowIndex)
             => (columnIndex >= 0 && columnIndex < ColumnCount) //Column
             && (rowIndex >= 0 && rowIndex < RowCount); //Row
@@ -75,7 +73,7 @@ namespace Crossword.Builder
             {
                 //Insert Vertically
                 if (!IsInGrid(columnIndex, rowIndex + elements.Count - 1))
-                    throw new IndexOutOfRangeException("Outside of the grid, during the insert"); //Todo: TwoDimensionalArray.Insert throw execption
+                    throw new IndexOutOfRangeException("Out of the grid, during the insert"); //Todo: TwoDimensionalArray.Insert throw execption
 
                 for (int i = 0; i < elements.Count; i++)
                     _array[columnIndex, rowIndex + i] = elements[i];
@@ -91,11 +89,48 @@ namespace Crossword.Builder
         }
         #endregion
 
-        public bool IsDefault(int columnIndex, int rowIndex)
-            => IsDefault(this[columnIndex, rowIndex]);
+        #region Get
+        public T this[int column, int row]
+            => _array[column, row];
 
-        public bool IsDefault(T element)
-            => element.Equals(default(T));
+        public T GetElement(int column, int row)
+            => _array[column, row];
+
+        public IEnumerable<T> GetColumn(int column, int startIndex = 0)
+        {
+            if (column >= ColumnCount || column < 0)
+                throw new IndexOutOfRangeException("Column out of the grid");
+            if (startIndex >= ColumnCount || startIndex < 0)
+                throw new IndexOutOfRangeException("Start index out of the grid");
+
+            for (int index = startIndex; index < ColumnCount; index++)
+                yield return this[column, index];       
+        }
+
+        public IEnumerable<T> GetRow(int row, int startIndex = 0)
+        {
+            if (row >= RowCount || row < 0)
+                throw new IndexOutOfRangeException("Row out of the grid");
+            if (startIndex >= ColumnCount || startIndex < 0)
+                throw new IndexOutOfRangeException("Start index out of the grid");
+
+            for (int index = startIndex; index < RowCount; index++)
+                yield return this[index, row];
+        } 
+
+        #endregion
+
+        public bool Contains(T element)
+        {
+            foreach (T arrayElement in _array)
+                if (element.Equals(arrayElement))
+                    return true;
+            
+            return false;
+        }
+
+        public bool ContainsDefault(int columnIndex, int rowIndex)
+            => this[columnIndex, rowIndex].Equals(default(T));
 
         public void Clear() 
             => Array.Clear(this._array, 0, this._array.Length);

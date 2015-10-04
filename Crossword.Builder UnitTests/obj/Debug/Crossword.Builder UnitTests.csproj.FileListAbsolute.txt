@@ -15,3 +15,11 @@ D:\Github\Crossword\Crossword.Builder UnitTests\bin\Debug\Crossword.Builder.pdb
 D:\Github\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.csprojResolveAssemblyReference.cache
 D:\Github\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.dll
 D:\Github\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.pdb
+C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder UnitTests\bin\Debug\Crossword.Builder UnitTests.dll
+C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder UnitTests\bin\Debug\Crossword.Builder UnitTests.pdb
+C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder UnitTests\bin\Debug\Crossword.Builder.dll
+C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder UnitTests\bin\Debug\Crossword.Builder.pdb
+C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.csprojResolveAssemblyReference.cache
+C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.dll
+C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.pdb

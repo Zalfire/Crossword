@@ -14,6 +14,8 @@ namespace Crossword.Builder
         /// <summary>The actual value of the class <see cref="Word"/>.</summary>
         public readonly String Value;
 
+        private readonly Char[] _characters;
+
         /// <summary>Gets the number of characters in <see cref="Word.Value"/>.</summary>
         public int Length => Value.Length;
 
@@ -31,32 +33,30 @@ namespace Crossword.Builder
             Id = Guid.NewGuid().ToString();
 
             Value = value.Trim().ToLower(); //Trims and Lower case value
+            _characters = Value.ToCharArray();
         }
         #endregion
 
-        #region Equality members
+        public Char[] ToCharArray()
+            => this._characters;
 
-        protected bool Equals(Word other)
+        public class EqualityComparer : IEqualityComparer<Word>
         {
-            return String.Equals(Value, other.Value);
-        }
+            public bool Equals(Word x, Word y)
+            {
+                return x.Value.Equals(y.Value);
+            }
 
-        public override int GetHashCode()
-        {
-            return Value != null 
-                ? Value.GetHashCode() 
-                : 0;
+            public int GetHashCode(Word obj)
+            {
+                return obj.Value.GetHashCode();
+            }
         }
-
-        #endregion
 
         //Todo: Placement summary and sub-summary
         public class Placement
         {
             #region Properties
-            /// <summary><see cref="Guid"/> identification as <see cref="String"/>.</summary>
-            public readonly String Id;
-
             public readonly int Row;
             
             public readonly int Column;
@@ -67,44 +67,32 @@ namespace Crossword.Builder
 
             public Placement(int column, int row, bool isHorizontal = true)
             {
-                Id = Guid.NewGuid().ToString();
-
                 Row = row;
                 Column = column;
                 IsHorizontal = isHorizontal;
             }
-            #region Equality members
-            protected bool Equals(Placement other)
-            {
-                return Row == other.Row 
-                    && Column == other.Column
-                    && IsHorizontal == other.IsHorizontal;
-            }
 
-            public override int GetHashCode()
+            public class EqualityComparer : IEqualityComparer<Placement>
             {
-                unchecked
+                public bool Equals(Placement x, Placement y)
                 {
-                    var hashCode = Row;
-                    hashCode = (hashCode*397) ^ Column;
-                    hashCode = (hashCode*397) ^ IsHorizontal.GetHashCode();
-                    return hashCode;
+                    return x.Row == y.Row
+                           && x.Column == y.Column
+                           && x.IsHorizontal == y.IsHorizontal;
+                }
+
+                public int GetHashCode(Placement obj)
+                {
+                    unchecked
+                    {
+                        var hashCode = obj.Row;
+                        hashCode = (hashCode*397) ^ obj.Column;
+                        hashCode = (hashCode*397) ^ obj.IsHorizontal.GetHashCode();
+                        return hashCode;
+                    }
                 }
             }
-            #endregion
         }
     }
 
-    //Todo: PlacedWord summary and sub-sumary
-    public class PlacedWord
-    {
-        public readonly Word Word;
-        public readonly Word.Placement Placement;
-
-        public PlacedWord(Word.Placement placement, Word word)
-        {
-            Placement = placement;
-            Word = word;
-        }
-    }
 }

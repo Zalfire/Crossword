@@ -51,6 +51,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BidimensionalArrayTests.cs" />
+    <Compile Include="CrosswordGridTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WordsDictionaryTests.cs" />
   </ItemGroup>

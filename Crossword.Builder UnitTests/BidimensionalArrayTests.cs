@@ -9,6 +9,41 @@ using System.Threading.Tasks;
 namespace Crossword.Builder.Tests
 {
     [TestClass()]
+    public class BidimensionalArrayTests
+    {
+        [TestMethod()]
+        public void IsDefautlTest()
+        {
+            const int column = 2;
+            const int row = 3;
+
+            BidimensionalArray<int> testArray = new BidimensionalArray<int>(column, row);
+
+            Assert.IsTrue(testArray.ContainsDefault(0, 0));
+
+            testArray.Insert(1, 0, 0);
+            Assert.IsFalse(testArray.ContainsDefault(0, 0));
+        }
+
+        [TestMethod()]
+        public void ContainsTest()
+        {
+            const int column = 5;
+            const int row = 6;
+
+            BidimensionalArray<int> testArray = new BidimensionalArray<int>(column, row);
+
+            testArray.Insert(new[] { 1, 2, 3, 4, 5 }, 0, 0, true);
+            testArray.Insert(new[] { 6, 7, 8, 9, 10, 11 }, 0, 0, false);
+            testArray.Insert(new[] { 12, 13, 14, 15, 16, 17 }, column - 1, 0, false);
+            testArray.Insert(new[] { 18, 19, 20, 21, 22 }, 0, row - 1, true);
+
+            Assert.IsFalse(testArray.Contains(23));
+            Assert.IsTrue(testArray.Contains(22));
+        }
+    }
+
+    [TestClass()]
     public class TwoDimensionArrayTests
     {
         [TestMethod()]
@@ -20,7 +55,7 @@ namespace Crossword.Builder.Tests
         [TestMethod()]
         public void TwoDimensionArrayTest1()
         {
-            Assert.IsNotNull(new[] {true});
+            Assert.IsNotNull(new BidimensionalArray<bool>( new[,] { { true } }));
         }
 
         [TestMethod()]

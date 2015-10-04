@@ -27,7 +27,7 @@ namespace Crossword.Builder.Tests
             Assert.IsTrue(words.Count() == dic.Words.Count());
 
             words = dic.GetWords(new Restriction(1, 2));
-            Assert.IsFalse(words.Any(w => w.Length >= 2));
+            Assert.IsFalse(words.Any(w => w.Length > 2));
 
             words = dic.GetWords(new Restriction(2, 0));
             Assert.IsFalse(words.Any(w => w.Length < 2));

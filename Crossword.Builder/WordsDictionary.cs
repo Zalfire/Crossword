@@ -25,7 +25,7 @@ namespace Crossword.Builder
         private List<String> ReadDictionaryFile()
         {
 #if (DEBUG)
-            return new List<String>(File.ReadAllLines(@"C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder\ressources\Dictionary.txt"));
+            return new List<String>(File.ReadAllLines(@"C:\Repositories GITHUB\Crossword\Crossword.Builder\ressources\Dictionary.txt"));
             return new List<String>(File.ReadAllLines(@"C:\Github\Crossword\Crossword.Builder\ressources\Dictionary.txt"));
 #endif
 

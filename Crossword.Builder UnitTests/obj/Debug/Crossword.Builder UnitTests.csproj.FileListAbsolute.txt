@@ -23,3 +23,12 @@ C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder UnitTests\bin\De
 C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.csprojResolveAssemblyReference.cache
 C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.dll
 C:\Users\phili_000\Documents\GitHub\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.pdb
+C:\Repositories GITHUB\Crossword\Crossword.Builder UnitTests\bin\Debug\Crossword.Builder UnitTests.dll
+C:\Repositories GITHUB\Crossword\Crossword.Builder UnitTests\bin\Debug\Crossword.Builder UnitTests.pdb
+C:\Repositories GITHUB\Crossword\Crossword.Builder UnitTests\bin\Debug\Crossword.Builder.dll
+C:\Repositories GITHUB\Crossword\Crossword.Builder UnitTests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Repositories GITHUB\Crossword\Crossword.Builder UnitTests\bin\Debug\Crossword.Builder.pdb
+C:\Repositories GITHUB\Crossword\Crossword.Builder UnitTests\bin\Debug\fr\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+C:\Repositories GITHUB\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.csprojResolveAssemblyReference.cache
+C:\Repositories GITHUB\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.dll
+C:\Repositories GITHUB\Crossword\Crossword.Builder UnitTests\obj\Debug\Crossword.Builder UnitTests.pdb
